@@ -5,6 +5,8 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.0.1"
     id("io.micronaut.aot") version "4.0.1"
+    id("io.micronaut.docker") version "4.0.1"
+    id("io.micronaut.graalvm") version "4.0.1"
 }
 
 version = "0.1"
@@ -24,6 +26,8 @@ dependencies {
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+    implementation("io.micronaut.rxjava2:micronaut-rxjava2")
+    implementation("io.micronaut.reactor:micronaut-reactor")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     testImplementation("io.micronaut:micronaut-http-client")
@@ -50,6 +54,7 @@ tasks {
     }
 }
 graalvmNative.toolchainDetection.set(false)
+graalvmNative.binaries.create("mn-multiplier").buildArgs.add("--verbose")
 micronaut {
     runtime("netty")
     testRuntime("junit5")
