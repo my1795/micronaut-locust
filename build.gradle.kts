@@ -66,6 +66,10 @@ tasks {
             configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
         })
     }
+    dockerfileNative.configure {
+        baseImage.set("ubuntu:22.04")
+        exposedPorts.add(9595)
+    }
 }
 graalvmNative.toolchainDetection.set(false)
 graalvmNative.binaries.create("mn-multiplier").buildArgs.add("--verbose")
