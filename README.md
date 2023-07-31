@@ -1,5 +1,8 @@
 # Load Test With Locus on a micronaut app
 Run
+`gradlew dockerBuildNative
+`
+Run
 `docker compose -f src/main/docker-compose/locust-compose.yml up  --scale worker=8
 `
 Then visit locust on your browser to trigger loaded tests
